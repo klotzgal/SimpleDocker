@@ -23,7 +23,7 @@
   - !["Part 1"](screeens/../screens/1.6.png)
 ##### Запустить докер с портами 80 и 443 в контейнере, замапленными на такие же порты на локальной машине, через команду *run*
   - !["Part 1"](screeens/../screens/1.7.png)
-  - команда docker run -dp 80:80 -p 443:443 --name part_1 nginx
+  - команда docker run -dp 80:80 -p 443:443 nginx
 ##### Проверить, что в браузере по адресу *localhost:80* доступна стартовая страница **nginx**
   - !["Part 1"](screeens/../screens/1.8.png)
 ##### Перезапустить докер контейнер через `docker restart [container_id|container_name]`
@@ -38,35 +38,23 @@
 **== Задание ==**
 
 ##### Прочитать конфигурационный файл *nginx.conf* внутри докер контейнера через команду *exec*
-  - docker exec part_1 cat /etc/nginx/nginx.conf
   - !["Part 2"](screeens/../screens/2.1.png)
 ##### Создать на локальной машине файл *nginx.conf*
 ##### Настроить в нем по пути */status* отдачу страницы статуса сервера **nginx**
 ##### Скопировать созданный файл *nginx.conf* внутрь докер образа через команду `docker cp`
+  - docker cp Part02/nginx.conf part_2:/etc/nginx/nginx.conf
 ##### Перезапустить **nginx** внутри докер образа через команду *exec*
-  - docker cp Part02/nginx.conf part_1:/etc/nginx/nginx.conf
-
-  - docker exec part_1 nginx -s reload
+  - docker exec part_2 nginx -s reload
   - !["Part 2"](screeens/../screens/2.2.png)
 ##### Проверить, что по адресу *localhost:80/status* отдается страничка со статусом сервера **nginx**
   - !["Part 2"](screeens/../screens/2.3.png)
 ##### Экспортировать контейнер в файл *container.tar* через команду *export*
-  - docker export part_1 > container.tar
 ##### Остановить контейнер
-  - docker stop part_1
 ##### Удалить образ через `docker rmi [image_id|repository]`, не удаляя перед этим контейнеры
-  - docker rmi -f nginx
-  - !["Part 2"](screeens/../screens/2.4.png)
 ##### Удалить остановленный контейнер
-  - !["Part 2"](screeens/../screens/2.5.png)
 ##### Импортировать контейнер обратно через команду *import*
 ##### Запустить импортированный контейнер
-  - docker import -c 'CMD ["nginx", "-g", "daemon off;"]' container.tar kl_image
-  - docker run --name part_2 -dp 80:80 -p 443:443 kl_image
-  - docker ps
-  - !["Part 2"](screeens/../screens/2.6.png)
 ##### Проверить, что по адресу *localhost:80/status* отдается страничка со статусом сервера **nginx**
-  - !["Part 2"](screeens/../screens/2.7.png)
 
 - В отчёт поместить скрины:
   - вызова и вывода всех использованных в этой части задания команд;
