@@ -3,8 +3,6 @@ LABEL author=klotzgal
 RUN apt-get update && apt-get upgrade -y && apt-get install gcc -y \
     libfcgi-dev \
     spawn-fcgi 
-    # \
-    # && rm -rf /var/lib/apt/lists
 
 WORKDIR /src
 
