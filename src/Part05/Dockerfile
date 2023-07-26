@@ -1,4 +1,4 @@
-FROM nginx:1.24.0
+FROM nginx:1.25.0
 LABEL author=klotzgal
 
 WORKDIR /src
@@ -31,16 +31,6 @@ RUN chown -R nginx /src \
     && chmod u-s /bin/umount \
     && chmod g-s /usr/bin/wall \
     && chmod u-s /usr/bin/newgrp
-    # && chmod u-s /usr/bin/gpasswd \
-    # && chmod u-s /usr/bin/passwd 
-    # && chmod u-s /usr/bin/expiry \
-    # && chmod u-s /usr/bin/chsh \
-    # && chmod u-s /usr/bin/wall \
-    # && chmod u-s /usr/bin/newgrp \
-    # && chmod u-s /usr/bin/chfn \
-    # && chmod u-s /usr/bin/chage 
-
-
 
 USER nginx
 
